@@ -6,6 +6,7 @@
 "use strict";
 
 import $ from "jquery";
+import LSX_Accordion from "./lib/lsx-accordion.js";
 import LSX_Carousel from "./lib/lsx-carousel.js";
 import LSX_Grid from "./lib/lsx-grid.js";
 import LSX_InfoBox from "./lib/lsx-info-box.js";
@@ -36,6 +37,7 @@ class LsPluginExtraTags {
         let jqHtml = $(html);
 
         [
+            LSX_Accordion,
             LSX_Carousel,
             LSX_Grid,
             LSX_InfoBox,
@@ -81,7 +83,7 @@ class LsPluginExtraTags {
      * @return {String} Generated ID
      */
     getRandomId() {
-        return Math.random().toString(36).split(".")[1];
+        return Math.random().toString(36).split(".")[1].replace(/\d/g, "A");
     }
 }
 
