@@ -10,6 +10,7 @@ additional HTML tags for complex elements:
  * Bootstrap grids
  * Info boxes (information, warning, critical)
  * Tab pages to switch between multiple sub-pages
+ * Accordion to switch between multiple sub-pages
  * Carousels to manually slide through a linear process
  * Embedded Youtube videos
 
@@ -181,7 +182,81 @@ They will be rendered as plain bootstrap tab pages:
         </div>
     </div>
 </div>
+```
 
+**Accordion**
+
+An accordion works similar to tab pages in that it allows to switch between
+multiple sub-pages. Unlike tab pages, the accordion pages are stacked
+verticaly, however.
+
+<img src="screenshot-accordion.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
+
+```html
+<lsx-accordion id="example">
+    <!-- Short version with plain-text title -->
+    <lsx-accordion-page title="First Page" active>
+        Content of the first accordion page.
+    </lsx-accordion-page>
+
+    <!-- Long version with HTML title -->
+    <lsx-accordion-page>
+        <lsx-accordion-title>
+            <b>Second Page</b>
+        </lsx-accordion-title>
+        <lsx-accordion-content>
+            Content of the second accordion page.
+        <lsx-accordion-content>
+    </lsx-accordion-page>
+<lsx-accordion>
+```
+
+This will be rendered as:
+
+```html
+<div id="example" class="accordion">
+    <div class="card">
+        <div
+            id            = "example-page1-title"
+            class         = "card-header"
+            data-toggle   = "collapse"
+            aria-expanded = "false"
+            aria-controls = "example-page1-content"
+            href          = "#example-page1-content"
+        >
+            First Page
+        </div>
+        <div
+            id              = "example-page1-content"
+            class           = "collapse container-fluid p-3"
+            aria-labelledby = "example-page1-title"
+            data-parent     = "#example"
+        >
+            Content of the first accordion page.
+        </div>
+    </div>
+
+    <div class="card">
+        <div
+            id            = "example-page2-title"
+            class         = "card-header"
+            data-toggle   = "collapse"
+            aria-expanded = "false"
+            aria-controls = "example-page2-content"
+            href          = "#example-page2-content"
+        >
+            <b>Second Page</b>
+        </div>
+        <div
+            id              = "example-page2-content"
+            class           = "collapse container-fluid p-3"
+            aria-labelledby = "example-page2-title"
+            data-parent     = "#example"
+        >
+            Content of the second accordion page.
+        </div>
+    </div>
+</div>
 ```
 
 **Slide Carousel**
