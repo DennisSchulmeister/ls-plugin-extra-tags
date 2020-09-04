@@ -10,8 +10,12 @@ import LSX_Accordion from "./lib/lsx-accordion.js";
 import LSX_Carousel from "./lib/lsx-carousel.js";
 import LSX_Grid from "./lib/lsx-grid.js";
 import LSX_InfoBox from "./lib/lsx-info-box.js";
+import LSX_Quiz from "./lib/lsx-quiz.js";
 import LSX_TabPages from "./lib/lsx-tab-pages.js";
 import LSX_Youtube from "./lib/lsx-youtube.js";
+
+import "./style.less";
+import "./icomoon/style.css";
 
 /**
  * This plugin adds additional HTML tags which ease the content creation
@@ -23,9 +27,12 @@ class LsPluginExtraTags {
      */
     constructor(config) {
         this.config = config || {};
-        this.config.labelCarouselNext = config.labelCarouselNext || "Next Step";
-        this.config.labelCarouselPrev = config.labelCarouselPrev || "Previous Step";
+        this.config.labelCarouselNext  = config.labelCarouselNext  || "Next Step";
+        this.config.labelCarouselPrev  = config.labelCarouselPrev  || "Previous Step";
         this.config.labelCarouselReset = config.labelCarouselReset || "Restart";
+        this.config.labelQuizPoints    = config.labelQuizPoints    || "{1} from {2}";
+        this.config.labelQuizEvaluate  = config.labelQuizEvaluate  || "Correct";
+        this.config.labelQuizNewTry    = config.labelQuizNewTry    || "New Try";
     }
 
     /**
@@ -41,6 +48,7 @@ class LsPluginExtraTags {
             LSX_Carousel,
             LSX_Grid,
             LSX_InfoBox,
+            LSX_Quiz,
             LSX_TabPages,
             LSX_Youtube,
         ].forEach(CustomTag => {
@@ -84,6 +92,59 @@ class LsPluginExtraTags {
      */
     getRandomId() {
         return Math.random().toString(36).split(".")[1].replace(/\d/g, "A");
+    }
+
+    /**
+     * Search the parent node hierarchy until a node matches a given match
+     * function.
+     *
+     * @param  {DOMElement} element The child node whose parent is searched
+     * @param  {Function} compare Match function to check a given node
+     * @return {DOMElement} The matched node or null
+     */
+    getParentRecursive(element, match) {
+        let matchedNode = null;
+
+        while (element.parentNode && !matchedNode) {
+            element = element.parentNode;
+            matchedNode = match(element) ? element : null;
+        }
+
+        return matchedNode;
+    }
+
+    /**
+     * Recursively fires a `CustomEvent` for the given parent node and all
+     * its direct or indirect child nodes.
+     *
+     * For performance reasons the custom event will never bubble up,
+     * no matter the given properties. Besides that all values given to
+     * this method are directly passed on to the `CustomEvent` construtor.
+     *
+     * @param {DOMElement} parent Parent element
+     * @param {String} name Name of the custom event
+     * @param {Object} properties Properties for the `CustomEvent`
+     */
+    broadcastCustomEvent(parent, name, properties) {
+        properties = properties || {};
+        properties.bubbles = false;
+
+        let elements = [parent];
+        let childElements = [];
+
+        while (elements.length) {
+            elements.forEach(element => {
+                let event = new CustomEvent(name, properties);
+                element.dispatchEvent(event);
+
+                for (let i = 0; i < element.children.length; i++) {
+                    childElements.push(element.children[i]);
+                }
+            });
+
+            elements = childElements;
+            childElements = [];
+        }
     }
 }
 

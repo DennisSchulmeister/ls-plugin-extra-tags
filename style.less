@@ -1,0 +1,143 @@
+/*
+ * ls-plugin-extra-tags (https://www.wpvs.de)
+ * © 2020  Dennis Schulmeister-Zimolong <dennis@pingu-mail.de>
+ * License of this file: AGPL 3.0+
+ */
+
+/**
+ * Quizes
+ */
+.lsx-quiz {
+    @answer-color-checked: rgb(19, 106, 186);
+    @answer-color-unchecked: rgb(80, 80, 80);
+    @answer-color-hover: lighten(@answer-color-checked, 10%);
+
+    // Set up three column grid layout
+    display: grid;
+    grid-template-columns: [correction] 5.5em [check] 1em [text] auto [end];
+    justify-content: stretch;
+    align-items: stretch;
+    grid-column-gap: 0.5em;
+    grid-row-gap: 0;
+
+    & > * {
+        padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+
+    // First column: Correction marks
+    .lsx-quiz-correction {
+        grid-column-start: correction;
+        grid-column-end: check;
+
+        background: rgba(255,255,255, 0.66);
+
+        border: 0px solid rgba(0,0,0, 0.25);
+        border-left-width: 1px;
+        border-right-width: 1px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lsx-quiz-border-top {
+        border-top-width: 1px;
+    }
+
+    .lsx-quiz-border-bottom {
+        border-bottom-width: 1px;
+    }
+
+    &[data-correction-visible='false'] {
+        grid-template-columns: [correction] 0 [check] 1em [text] auto [end];
+
+        .lsx-quiz-correction {
+            display: none;
+        }
+    }
+
+    .lsx-quiz-total-percentage {
+        border: 0px solid rgba(0,0,0, 0.25);
+        border-top-width: 1px;
+        font-weight: bold;
+
+        width: 100%;
+        text-align: center;
+    }
+
+    .lsx-exercise-points {
+        font-size: 0.8em;
+    }
+
+    .lsx-quiz-total-points {
+        font-size: 0.7em;
+    }
+
+    // Second column to end: Exercise titles, question text and quiz controls
+    .lsx-quiz-exercise,
+    .lsx-quiz-question,
+    .lsx-quiz-controls, {
+        grid-column-start: check;
+        grid-column-end: end;
+    }
+
+    .lsx-quiz-question {
+        font-weight: bold;
+    }
+
+    .lsx-quiz-controls {
+        display: flex;
+        align-items: center;
+    }
+
+    // Second and third column: Check marks and text
+    .lsx-quiz-answer-select,
+    .lsx-quit-answer-number {
+        grid-column-start: check;
+        grid-column-end: text;
+    }
+
+    .lsx-quiz-answer-text {
+        grid-column-start: text;
+        grid-column-end: end;
+
+        color: rgb(80, 80, 80);
+
+        &.hover {
+            font-weight: bold;
+            color: inherit;
+        }
+    }
+
+    // Icon colors
+    .lsx-quiz-icon {
+        font-size: 70%;
+        color: @answer-color-unchecked;
+    }
+
+    .hover {
+        cursor: pointer;
+
+        .lsx-quiz-icon {
+            color: @answer-color-hover;
+        }
+    }
+
+    .icon-checkbox-checked,
+    .icon-radio-checked2 {
+        color: @answer-color-checked;
+    }
+
+    .icon-checkmark {
+        color: rgb(49, 116, 52);
+    }
+
+    .icon-checkmark2 {
+        color: rgb(255, 176, 0);
+    }
+
+    .icon-cross {
+        color: rgb(149, 46, 46);
+    }
+}

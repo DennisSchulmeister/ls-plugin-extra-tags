@@ -13,6 +13,7 @@ additional HTML tags for complex elements:
  * Accordion to switch between multiple sub-pages
  * Carousels to manually slide through a linear process
  * Embedded Youtube videos
+ * Interactive quizes
 
 Installation
 ------------
@@ -366,6 +367,101 @@ The aspect ratio can be any ration supported by bootstrap:
  * `16by9` (default)
  * `4by3`
  * `1by1`
+
+**Interative Quizes**
+
+Currently this element allows to define interactive quizes with multiple-choice
+and single-choice questions. In future, different answer types could be added
+depending on actual need.
+
+<img src="screenshot-quiz.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
+
+A minimal, working example could be this:
+
+```html
+<lsx-quiz prefix="Aufgabe #:">
+    <lsx-exercise title="Die Geschichte des Internets">
+        <lsx-question
+            type = "single-choice"
+            text = "a) Wie hieß der technische Vorläufer des heutigen Internets?"
+        >
+            <lsx-answer>ADANET</lsx-answer>
+            <lsx-answer correct>ARPANET</lsx-answer>
+            <lsx-answer>Darker Net</lsx-answer>
+            <lsx-answer>Global Web</lsx-answer>
+        </lsx-question>
+
+        <lsx-question
+            type = "single-choice"
+            text = "b) In welchem Jahr gingen die ersten Rechner online?"
+        >
+            <lsx-answer>1959</lsx-answer>
+            <lsx-answer>1963</lsx-answer>
+            <lsx-answer correct>1969</lsx-answer>
+            <lsx-answer>1971</lsx-answer>
+        </lsx-question>
+    </lsx-exercise>
+
+    <lsx-exercise title="Technisches zum World Wide Web">
+        <lsx-question
+            type = "single-choice"
+            text = "a) Was ist ein Hypertext? "
+        >
+            <lsx-answer correct>Ein nicht-linearer Text mit Absprüngen und Verlinkungen</lsx-answer>
+            <lsx-answer>Ein technisch-orientierter Text mit multimedialen Inhalten</lsx-answer>
+            <lsx-answer>Ein für Computer lesbarer Quelltext nach der Compilierung</lsx-answer>
+            <lsx-answer>Ein besonders effizient komprimierter, natürlichsprachlicher Text</lsx-answer>
+        </lsx-question>
+
+        <lsx-question
+            type = "single-choice"
+            text = "b) Wie lautet die vollständige URL der DHBW Karlsruhe inklusive aller optionalen Bestandteile? "
+        >
+            <lsx-answer><code>karlsruhe.dhbw.de</code></lsx-answer>
+            <lsx-answer><code>www.karlsruhe.dhbw.de</code></lsx-answer>
+            <lsx-answer><code>https://www.karlsruhe.dhbw.de</code></lsx-answer>
+            <lsx-answer correct><code>https://www.karlsruhe.dhbw.de/</code></lsx-answer>
+            <lsx-answer><code>https://www.karlsruhe.dhbw.de/dhbw-karlsruhe/</code></lsx-answer>
+            <lsx-answer><code>https://www.karlsruhe.dhbw.de/en/general/about-us.html</code></lsx-answer>
+            <lsx-answer><code>https://www.karlsruhe.dhbw.de/en/general/about-us.html?lang=en</code></lsx-answer>
+        </lsx-question>
+    </lsx-exercise>
+</lsx-quiz>
+```
+
+The nested structure where a `<lsx-quiz>` contains many `<lsx-exercise>`, which
+contain many `<lsx-question>`, which contain many `<lsx-answer>` is important
+for this feature to work.
+
+Question texts can also be HTML formatter:
+
+```html
+<lsx-question type="single-choice">
+    <lsx-question-text>
+        <b>HTML-formatted</b> question text.
+    <lsx-question-text>
+
+    <lsx-answer>Answer 1</lsx-answer>
+    <lsx-answer>Answer 2</lsx-answer>
+    …
+</lsx-question>
+```
+
+Answers can be marked correct, wrong and partialy correct:
+
+```html
+<lsx-answer correct>
+    Correct answer, gives 1 point if ticked.
+</lsx-answer>
+
+<lsx-answer partialy-correct>
+    Partialy correct answer, gives 0.5 points if ticked.
+</lsx-answer>
+
+<lsx-answer wrong>
+    Wrong answer, gives -1 point if ticked.
+</lsx-answer>
+```
 
 
 Copyright
