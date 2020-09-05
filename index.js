@@ -12,6 +12,7 @@ import LSX_Grid from "./lib/lsx-grid.js";
 import LSX_InfoBox from "./lib/lsx-info-box.js";
 import LSX_Quiz from "./lib/lsx-quiz.js";
 import LSX_TabPages from "./lib/lsx-tab-pages.js";
+import LSX_ul from "./lib/lsx-ul.js";
 import LSX_Youtube from "./lib/lsx-youtube.js";
 
 import "./style.less";
@@ -50,6 +51,7 @@ class LsPluginExtraTags {
             LSX_InfoBox,
             LSX_Quiz,
             LSX_TabPages,
+            LSX_ul,
             LSX_Youtube,
         ].forEach(CustomTag => {
             let tag = new CustomTag();

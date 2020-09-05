@@ -14,6 +14,7 @@ additional HTML tags for complex elements:
  * Carousels to manually slide through a linear process
  * Embedded Youtube videos
  * Interactive quizes
+ * Lists with emoji symbols
 
 Installation
 ------------
@@ -83,7 +84,7 @@ This will be translated to:
 
 Information boxes highlight important information, like this:
 
-<img src="screenshot-infobox.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
+<img src="screenshots/lsx-info-box.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
 
 ```html
 <lsx-info-box>
@@ -117,7 +118,7 @@ They will be rendered as:
 Tab pages allow to switch between different content pages by clicking
 on a title.
 
-<img src="screenshot-tab-pages.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
+<img src="screenshots/lsx-tab-pages.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
 
 ```html
 <lsx-tab-pages id="example">
@@ -191,7 +192,7 @@ An accordion works similar to tab pages in that it allows to switch between
 multiple sub-pages. Unlike tab pages, the accordion pages are stacked
 verticaly, however.
 
-<img src="screenshot-accordion.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
+<img src="screenshots/lsx-accordion.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
 
 ```html
 <lsx-accordion id="example">
@@ -266,7 +267,7 @@ A carousel allows to manually slide through a linear sequence of images.
 Unlike typical HTML carousels, this one doesn't automaticaly move but
 rather requires to click a link to see the next card.
 
-<img src="screenshot-carousel.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
+<img src="screenshots/lsx-carousel.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
 
 Basic example:
 
@@ -346,7 +347,7 @@ Carousels will be rendered to plain bootstrap carousels:
 This element allows to embedded any youtube video, whose video ID (found in
 the youtube URL) is known.
 
-<img src="screenshot-youtube.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
+<img src="screenshots/lsx-youtube.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
 
 ```html
 <lsx-youtube video="HERMqverQWM" aspect-ratio="16by9"><lsx-youtube>
@@ -374,7 +375,7 @@ Currently this element allows to define interactive quizes with multiple-choice
 and single-choice questions. In future, different answer types could be added
 depending on actual need.
 
-<img src="screenshot-quiz.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
+<img src="screenshots/lsx-quiz.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
 
 A minimal, working example could be this:
 
@@ -461,6 +462,60 @@ Answers can be marked correct, wrong and partialy correct:
 <lsx-answer wrong>
     Wrong answer, gives -1 point if ticked.
 </lsx-answer>
+```
+
+**Lists with emoji symbols**
+
+Plain unordered lists sometimes look a bit boring. The custom element
+`<lsx-ul>` thus allows to create lists with an emoji as a list symbol:
+
+<img src="screenshots/lsx-ul.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
+
+```html
+<lsx-ul emoji="⚽">
+    <li>List Item 1</li>
+    <li>List Item 2</li>
+    <li>List Item 3</li>
+</lsx-ul>
+```
+
+Normaly this will still be rendered as an html list:
+
+```html
+<ul style="list-style-type: '⚽  '";>
+    <li>List Item 1</li>
+    <li>List Item 2</li>
+    <li>List Item 3</li>
+</ul>
+```
+
+If however at least one of the list items contains its own emoji:
+
+```html
+<lsx-ul emoji="⚽">
+    <li emoji="🎳">List Item 1</li>
+    <li>List Item 2</li>
+    <li>List Item 3</li>
+</lsx-ul>
+```
+
+The list will be rendered as a table, instead:
+
+```html
+<table>
+    <tr>
+        <td style="padding-right: 0.5em;">🎳</td>
+        <td>List Item 1</td>
+    </tr>
+    <tr>
+        <td style="padding-right: 0.5em;">⚽</td>
+        <td>List Item 2</td>
+    </tr>
+    <tr>
+        <td style="padding-right: 0.5em;">⚽</td>
+        <td>List Item 3</td>
+    </tr>
+</table>
 ```
 
 
