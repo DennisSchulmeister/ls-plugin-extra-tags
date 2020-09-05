@@ -12,16 +12,18 @@
     @answer-color-unchecked: rgb(80, 80, 80);
     @answer-color-hover: lighten(@answer-color-checked, 10%);
 
+    @padding: 0.25em 0 0.25em 0;
+
     // Set up three column grid layout
     display: grid;
     grid-template-columns: [correction] 5.5em [check] 1em [text] auto [end];
     justify-content: stretch;
     align-items: stretch;
-    grid-column-gap: 0.5em;
+    grid-column-gap: 0.75em;
     grid-row-gap: 0;
 
     & > * {
-        padding: 0.25em 0.5em 0.25em 0.5em;
+        padding: @padding;
     }
 
     // First column: Correction marks
@@ -39,6 +41,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: @padding;
     }
 
     .lsx-quiz-border-top {
@@ -77,6 +80,7 @@
     // Second column to end: Exercise titles, question text and quiz controls
     .lsx-quiz-exercise,
     .lsx-quiz-question,
+    .lsx-quiz-hint,
     .lsx-quiz-controls, {
         grid-column-start: check;
         grid-column-end: end;
