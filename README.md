@@ -464,6 +464,14 @@ Answers can be marked correct, wrong and partialy correct:
 </lsx-answer>
 ```
 
+The icons used for correction can also be used independently:
+
+```html
+    Correct answer: <span class="icon-checkmark"></span> <br />
+    Partialy correct answer: <span class="icon-checkmark2"></span> <br />
+    Wrong answer: <span class="icon-cross"></span>
+```
+
 **Lists with emoji symbols**
 
 Plain unordered lists sometimes look a bit boring. The custom element
