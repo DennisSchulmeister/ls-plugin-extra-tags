@@ -8,6 +8,7 @@
 import $ from "jquery";
 import LSX_Accordion from "./lib/lsx-accordion.js";
 import LSX_Carousel from "./lib/lsx-carousel.js";
+import LSX_GithubEdit from "./lib/lsx-github-edit.js";
 import LSX_Grid from "./lib/lsx-grid.js";
 import LSX_InfoBox from "./lib/lsx-info-box.js";
 import LSX_Quiz from "./lib/lsx-quiz.js";
@@ -28,12 +29,18 @@ class LsPluginExtraTags {
      */
     constructor(config) {
         this.config = config || {};
-        this.config.labelCarouselNext  = config.labelCarouselNext  || "Next Step";
-        this.config.labelCarouselPrev  = config.labelCarouselPrev  || "Previous Step";
-        this.config.labelCarouselReset = config.labelCarouselReset || "Restart";
-        this.config.labelQuizPoints    = config.labelQuizPoints    || "{1} from {2}";
-        this.config.labelQuizEvaluate  = config.labelQuizEvaluate  || "Correct";
-        this.config.labelQuizNewTry    = config.labelQuizNewTry    || "New Try";
+
+        this.config.labelCarouselNext       = config.labelCarouselNext            || "Next Step";
+        this.config.labelCarouselPrev       = config.labelCarouselPrev            || "Previous Step";
+        this.config.labelCarouselReset      = config.labelCarouselReset           || "Restart";
+
+        this.config.labelGithubEditOnline   = this.config.labelGithubEditOnline   || "Start Online IDE";
+        this.config.labelGithubEditDownload = this.config.labelGithubEditDownload || "Download Source Code";
+        this.config.githubEditUrlPrefix     = this.config.githubEditUrlPrefix     || "";
+
+        this.config.labelQuizPoints         = config.labelQuizPoints              || "{1} from {2}";
+        this.config.labelQuizEvaluate       = config.labelQuizEvaluate            || "Correct";
+        this.config.labelQuizNewTry         = config.labelQuizNewTry              || "New Try";
     }
 
     /**
@@ -47,6 +54,7 @@ class LsPluginExtraTags {
         [
             LSX_Accordion,
             LSX_Carousel,
+            LSX_GithubEdit,
             LSX_Grid,
             LSX_InfoBox,
             LSX_Quiz,

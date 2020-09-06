@@ -15,6 +15,7 @@ additional HTML tags for complex elements:
  * Embedded Youtube videos
  * Interactive quizes
  * Lists with emoji symbols
+ * Edit and Download GitHub Repositories online
 
 Installation
 ------------
@@ -40,6 +41,15 @@ window.addEventListener("load", () => {
                 labelCarouselNext: "Next Step",
                 labelCarouselPrev: "Previous Step",
                 labelCarouselReset: "Restart",
+
+                labelGithubEditOnline: "Start Online-IDE",
+                labelGithubEditDownload: "Download Source Code",
+
+                labelQuizPoints: "{1} from {2}",
+                labelQuizEvaluate: "Correct",
+                labelQuizNewTry: "New Try",
+
+                githubEditUrlPrefix: "https://github.com/DennisSchulmeister/dhbwka-wwi-webprog-quellcodes/tree/master/",
             }),
         }
     });
@@ -525,6 +535,35 @@ The list will be rendered as a table, instead:
     </tr>
 </table>
 ```
+
+
+**Edit and Download GitHub Repositories online**
+
+For programming assignments you usualy need to provide the source code and
+required tools out of band. But if the code is publicly available on GitHub,
+you can use this element to provide a link to start an online IDE or directly
+download the source code from GitHub:
+
+<img src="screenshots/lsx-github-edit.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
+
+```html
+<lsx-github-edit
+    url="https://github.com/DennisSchulmeister/dhbwka-wwi-webprog-quellcodes/tree/master/1%20HTML%20und%20CSS/Aufgaben/Einfaches%20Layout/Aufgabe"
+></lsx-github-edit>
+```
+
+Optionaly an different url can be given for the download button, e.g. to also
+include a sample solution:
+
+```html
+<lsx-github-edit
+    url      = "https://github.com/DennisSchulmeister/dhbwka-wwi-webprog-quellcodes/tree/master/1%20HTML%20und%20CSS/Aufgaben/Einfaches%20Layout/Aufgabe"
+    download = "https://github.com/DennisSchulmeister/dhbwka-wwi-webprog-quellcodes/tree/master/1%20HTML%20und%20CSS/Aufgaben/Einfaches%20Layout"
+></lsx-github-edit>
+```
+
+Long prefixes, that will remain the same throughout a presentation, can be also be
+moved to the plugin configuration (see top of this page).
 
 
 Copyright
