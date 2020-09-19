@@ -379,7 +379,7 @@ The aspect ratio can be any ration supported by bootstrap:
  * `4by3`
  * `1by1`
 
-**Interative Quizes**
+**Interactive Quizes**
 
 Currently this element allows to define interactive quizes with multiple-choice
 and single-choice questions. In future, different answer types could be added
