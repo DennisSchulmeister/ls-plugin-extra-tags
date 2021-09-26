@@ -207,7 +207,7 @@ verticaly, however.
 ```html
 <lsx-accordion id="example">
     <!-- Short version with plain-text title -->
-    <lsx-accordion-page title="First Page" active>
+    <lsx-accordion-page title="First Page" bold active>
         Content of the first accordion page.
     </lsx-accordion-page>
 
@@ -230,7 +230,7 @@ This will be rendered as:
     <div class="card">
         <div
             id            = "example-page1-title"
-            class         = "card-header"
+            class         = "card-header font-weight-bold"
             data-toggle   = "collapse"
             aria-expanded = "false"
             aria-controls = "example-page1-content"
@@ -270,6 +270,9 @@ This will be rendered as:
     </div>
 </div>
 ```
+
+The attribute `active` can be used to open one page by default. Accordingly
+the attribute `bold` can be used to render a bold page title.
 
 **Slide Carousel**
 
