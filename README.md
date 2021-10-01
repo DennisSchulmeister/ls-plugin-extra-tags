@@ -317,39 +317,41 @@ If wanted, additional links can be created to directly jump to a given page:
 Carousels will be rendered to plain bootstrap carousels:
 
 ```html
-<ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item">
-        <a href="#example-carousel" class="nav-link" data-slide="next">Next Step</a>
-    </li>
-    <li class="nav-item">
-        <a href="#example-carousel" class="nav-link" data-slide="prev">Previous Step</a>
-    </li>
-    <li class="nav-item">
-        <a href="#example-carousel" class="nav-link" data-slide-to="0">Restart</a>
-    </li>
-</ul>
-<ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item">
-        <small>
-            <a href="#example-carousel" class="nav-link" data-slide-to="1">Second Page</a>
-        </small>
-    </li>
-    <li class="nav-item">
-        <small>
-            <a href="#example-carousel" class="nav-link" data-slide-to="2">Closing Notes</a>
-        <small>
-    </li>
-</ul>
-<div id="example-carousel" class="carousel slide" data-interval="false">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            Content of the first step.
-        </div>
-        <div class="carousel-item">
-            Content of the second step.
-        </div>
-        <div class="carousel-item">
-            Content of the third step.
+<div class="carousel-outer">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#example-carousel" class="nav-link" data-slide="next">Next Step</a>
+        </li>
+        <li class="nav-item">
+            <a href="#example-carousel" class="nav-link" data-slide="prev">Previous Step</a>
+        </li>
+        <li class="nav-item">
+            <a href="#example-carousel" class="nav-link" data-slide-to="0">Restart</a>
+        </li>
+    </ul>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <small>
+                <a href="#example-carousel" class="nav-link" data-slide-to="1">Second Page</a>
+            </small>
+        </li>
+        <li class="nav-item">
+            <small>
+                <a href="#example-carousel" class="nav-link" data-slide-to="2">Closing Notes</a>
+            <small>
+        </li>
+    </ul>
+    <div id="example-carousel" class="carousel slide mb-0" data-interval="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                Content of the first step.
+            </div>
+            <div class="carousel-item">
+                Content of the second step.
+            </div>
+            <div class="carousel-item">
+                Content of the third step.
+            </div>
         </div>
     </div>
 </div>
