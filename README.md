@@ -4,8 +4,8 @@ lecture-slides.js: Additional HTML Tags
 Description
 -----------
 
-This plugin simplifies content creation with lecture-slides.js by defining
-additional HTML tags for complex elements:
+This plugin simplifies content creation with `lecture-slides.js` and
+`mini-tutorial.js` by defining additional HTML tags for complex elements:
 
  * Bootstrap grids
  * Info boxes (information, warning, critical)
@@ -17,26 +17,38 @@ additional HTML tags for complex elements:
  * Lists with emoji symbols
  * Edit and Download GitHub Repositories online
 
+Please note, that this requires the Bootstrap framework in your document.
+For `lecture-slides.js` this is no problem, as Bootstrap is already used
+for the main UI and can be used, anyway. For `mini-tutorial.js` projects
+Bootstrap must be manually added to the project as it is intentionaly not
+defined as a dependency here.
+
 Installation
 ------------
 
- 1. Add this plugin to your presentation:
-    `$ npm add --save-dev ls-plugin-extra-tags`
- 2. Import it in the `index.js` file
- 3. Use the HTML tags below in your presentation
+**If you are using `mini-tutorial.js`:**
 
-Example for `index.js`:
+ 1. Add Bootstrap to you project, if you are using `mini-tutorial.js`.
+ 1. Make sure your bundler allows loading of LESS stylesheets
+
+**In all cases:**
+
+ 1. Add this plugin to your presentation: `$ npm add --save-dev @dschulmeis/ls-plugin-extra-tags`
+ 1. Import it in the `index.js` file
+ 1. Use the HTML tags below in your presentation
+
+Example for `lecture-slides.js`:
 
 ```javascript
 "use strict";
 
 import SlideshowPlayer from "lecture-slides.js";
-import LsPluginExtraTags from "ls-plugin-extra-tags";
+import LS_Plugin_ExtraTags from "ls-plugin-extra-tags";
 
 window.addEventListener("load", () => {
     let player = new SlideshowPlayer({
         plugins: {
-            ExtraTags: new LsPluginExtraTags({
+            ExtraTags: new LS_Plugin_ExtraTags({
                 // Carousel control labels
                 labelCarouselNext: "Next Step",
                 labelCarouselPrev: "Previous Step",
@@ -55,6 +67,28 @@ window.addEventListener("load", () => {
     });
 
     player.start();
+});
+```
+
+Example for `mini-tutorial.js`:
+
+```javascript
+import MiniTutorial from "@dschulmeis/mini-tutorial.js";
+import LS_Plugin_ExtraTags from "ls-plugin-extra-tags";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
+window.addEventListener("load", () => {
+    let mt = new MiniTutorial({
+        plugins: [
+            new LS_Plugin_ExtraTags({
+                // Same options as above
+            }),
+        ]
+    });
+
+    mt.start();
 });
 ```
 
@@ -151,25 +185,25 @@ They will be rendered as plain bootstrap tab pages:
     <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a
-                id            = "example-page1-tab"
-                class         = "nav-link active"
-                data-toggle   = "tab"
-                href          = "#example-page1"
-                role          = "tab"
-                aria-controls = "example-page1"
-                aria-expanded = "true"
+                id             = "example-page1-tab"
+                class          = "nav-link active"
+                data-bs-toggle = "tab"
+                href           = "#example-page1"
+                role           = "tab"
+                aria-controls  = "example-page1"
+                aria-expanded  = "true"
             >
                 Explanation
             </a>
         </li>
         <li class="nav-item">
             <a
-                id            = "example-page2-tab"
-                class         = "nav-link"
-                data-toggle   = "tab"
-                href          = "#example-page2"
-                role          = "tab"
-                aria-controls = "example-page2"
+                id             = "example-page2-tab"
+                class          = "nav-link"
+                data-bs-toggle = "tab"
+                href           = "#example-page2"
+                role           = "tab"
+                aria-controls  = "example-page2"
             >
                 Case Study
             </a>
@@ -229,12 +263,12 @@ This will be rendered as:
 <div id="example" class="accordion">
     <div class="card">
         <div
-            id            = "example-page1-title"
-            class         = "card-header font-weight-bold"
-            data-toggle   = "collapse"
-            aria-expanded = "false"
-            aria-controls = "example-page1-content"
-            href          = "#example-page1-content"
+            id            =  "example-page1-title"
+            class          = "card-header font-weight-bold"
+            data-bs-toggle = "collapse"
+            aria-expanded  = "false"
+            aria-controls  = "example-page1-content"
+            href           = "#example-page1-content"
         >
             First Page
         </div>
@@ -242,7 +276,7 @@ This will be rendered as:
             id              = "example-page1-content"
             class           = "collapse container-fluid p-3"
             aria-labelledby = "example-page1-title"
-            data-parent     = "#example"
+            data-bsparent   = "#example"
         >
             Content of the first accordion page.
         </div>
@@ -250,12 +284,12 @@ This will be rendered as:
 
     <div class="card">
         <div
-            id            = "example-page2-title"
-            class         = "card-header"
-            data-toggle   = "collapse"
-            aria-expanded = "false"
-            aria-controls = "example-page2-content"
-            href          = "#example-page2-content"
+            id             = "example-page2-title"
+            class          = "card-header"
+            data-bs-toggle = "collapse"
+            aria-expanded  = "false"
+            aria-controls  = "example-page2-content"
+            href           = "#example-page2-content"
         >
             <b>Second Page</b>
         </div>
@@ -263,7 +297,7 @@ This will be rendered as:
             id              = "example-page2-content"
             class           = "collapse container-fluid p-3"
             aria-labelledby = "example-page2-title"
-            data-parent     = "#example"
+            data-bs-parent  = "#example"
         >
             Content of the second accordion page.
         </div>
@@ -308,7 +342,7 @@ If wanted, additional links can be created to directly jump to a given page:
     <lsx-carousel-page direct-link="Second Page">
         Content of the second step.
     </lsx-carousel-page>
-    <lsx-carousel-page direct-link"Closing Notes">
+    <lsx-carousel-page direct-link="Closing Notes">
         Content of the third step.
     </lsx-carousel-page>
 </lsx-carousel>
@@ -320,28 +354,28 @@ Carousels will be rendered to plain bootstrap carousels:
 <div class="carousel-outer">
     <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-            <a href="#example-carousel" class="nav-link" data-slide="next">Next Step</a>
+            <a href="#example-carousel" class="nav-link" data-bs-slide="next">Next Step</a>
         </li>
         <li class="nav-item">
-            <a href="#example-carousel" class="nav-link" data-slide="prev">Previous Step</a>
+            <a href="#example-carousel" class="nav-link" data-bs-slide="prev">Previous Step</a>
         </li>
         <li class="nav-item">
-            <a href="#example-carousel" class="nav-link" data-slide-to="0">Restart</a>
+            <a href="#example-carousel" class="nav-link" data-bs-slide-to="0">Restart</a>
         </li>
     </ul>
     <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <small>
-                <a href="#example-carousel" class="nav-link" data-slide-to="1">Second Page</a>
+                <a href="#example-carousel" class="nav-link" data-bs-slide-to="1">Second Page</a>
             </small>
         </li>
         <li class="nav-item">
             <small>
-                <a href="#example-carousel" class="nav-link" data-slide-to="2">Closing Notes</a>
+                <a href="#example-carousel" class="nav-link" data-bs-slide-to="2">Closing Notes</a>
             <small>
         </li>
     </ul>
-    <div id="example-carousel" class="carousel slide mb-0" data-interval="false">
+    <div id="example-carousel" class="carousel slide mb-0" data-bs-interval="false">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 Content of the first step.
@@ -372,17 +406,17 @@ The video will be embedded with no cookies to protect the viewers identity.
 It will be rendered as:
 
 ```html
-<div class="embed-responsive embed-responsive-16by9">
+<div class="ratio ratio-16x9">
     <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/HERMqverQWM?rel=0&amp;showinfo=0" allowfullscreen></iframe>
 </div>
 ```
 
 The aspect ratio can be any ration supported by bootstrap:
 
- * `21by9`
- * `16by9` (default)
- * `4by3`
- * `1by1`
+ * `21x9`
+ * `16x9` (default)
+ * `4x3`
+ * `1x1`
 
 **Interactive Quizes**
 
@@ -576,9 +610,5 @@ Copyright
 
 lecture-slides.js: https://www.github.com/DennisSchulmeister/lecture-slides.js <br/>
 This plugin: https://github.com/DennisSchulmeister/ls-plugin-extra-tags <br/>
-© 2020 Dennis Schulmeister-Zimolong <dennis@pingu-mail.de>
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as
-published by the Free Software Foundation, either version 3 of the
-License, or (at your option) any later version.
+© 2020 – 2022 Dennis Schulmeister-Zimolong <dennis@pingu-mail.de> <br/>
+Licensed under the 2-Clause BSD License.

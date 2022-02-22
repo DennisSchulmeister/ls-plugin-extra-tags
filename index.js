@@ -1,11 +1,10 @@
 /*
- * ls-plugin-extra-tags (https://www.wpvs.de)
- * © 2020  Dennis Schulmeister-Zimolong <dennis@pingu-mail.de>
- * License of this file: AGPL 3.0+
+* ls-plugin-extra-tags (https://www.wpvs.de)
+* © 2020 – 2022 Dennis Schulmeister-Zimolong <dennis@pingu-mail.de>
+* Licensed under the 2-Clause BSD License.
  */
 "use strict";
 
-import $ from "jquery";
 import LSX_Accordion from "./lib/lsx-accordion.js";
 import LSX_Carousel from "./lib/lsx-carousel.js";
 import LSX_GithubEdit from "./lib/lsx-github-edit.js";
@@ -21,36 +20,34 @@ import "./icomoon/style.css";
 
 /**
  * This plugin adds additional HTML tags which ease the content creation
- * with lecture-slides.js. See the README file for detailed information.
+ * with lecture-slides.js and mini-tutorial.js See the README file for detailed
+ * information.
  */
-class LsPluginExtraTags {
+export default class LS_Plugin_ExtraTags {
     /**
      * Constructor.
      */
     constructor(config) {
         this.config = config || {};
 
-        this.config.labelCarouselNext       = config.labelCarouselNext            || "Next Step";
-        this.config.labelCarouselPrev       = config.labelCarouselPrev            || "Previous Step";
-        this.config.labelCarouselReset      = config.labelCarouselReset           || "Restart";
+        this.config.labelCarouselNext       = this.config.labelCarouselNext       || "Next Step";
+        this.config.labelCarouselPrev       = this.config.labelCarouselPrev       || "Previous Step";
+        this.config.labelCarouselReset      = this.config.labelCarouselReset      || "Restart";
 
         this.config.labelGithubEditOnline   = this.config.labelGithubEditOnline   || "Start Online IDE";
         this.config.labelGithubEditDownload = this.config.labelGithubEditDownload || "Download Source Code";
         this.config.githubEditUrlPrefix     = this.config.githubEditUrlPrefix     || "";
 
-        this.config.labelQuizPoints         = config.labelQuizPoints              || "{1} from {2}";
-        this.config.labelQuizEvaluate       = config.labelQuizEvaluate            || "Correct";
-        this.config.labelQuizNewTry         = config.labelQuizNewTry              || "New Try";
+        this.config.labelQuizPoints         = this.config.labelQuizPoints         || "{1} from {2}";
+        this.config.labelQuizEvaluate       = this.config.labelQuizEvaluate       || "Correct";
+        this.config.labelQuizNewTry         = this.config.labelQuizNewTry         || "New Try";
     }
 
     /**
      * This function replaces all custom HTML tags with standard ones.
      * @param {Element} html DOM node with the slide definitions
-     * @param {Object} utils Utility functions from lecture-slides.js
      */
-    preprocessHtml(html, utils) {
-        let jqHtml = $(html);
-
+    preprocessHtml(html) {
         [
             LSX_Accordion,
             LSX_Carousel,
@@ -63,7 +60,7 @@ class LsPluginExtraTags {
             LSX_Youtube,
         ].forEach(CustomTag => {
             let tag = new CustomTag();
-            tag.preprocessHtml(html, jqHtml, utils, this);
+            tag.preprocessHtml(html, this);
         });
     }
 
@@ -157,5 +154,3 @@ class LsPluginExtraTags {
         }
     }
 }
-
-export default LsPluginExtraTags;
