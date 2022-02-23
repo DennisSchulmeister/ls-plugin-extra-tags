@@ -107,7 +107,7 @@ This is just a simple wrapper around bootstrap's `<div class="container-fluid">`
             ...
         </lsx-col>
     </lsx-row>
-<lsx-grid-fluid>
+</lsx-grid-fluid>
 ```
 
 This will be translated to:
@@ -175,7 +175,7 @@ on a title.
     <lsx-tab-page title="Example Code">
         Content of the third tab page.
     </lsx-tab-page>
-<lsx-tab-pages>
+</lsx-tab-pages>
 ```
 
 They will be rendered as plain bootstrap tab pages:
@@ -254,7 +254,7 @@ verticaly, however.
             Content of the second accordion page.
         <lsx-accordion-content>
     </lsx-accordion-page>
-<lsx-accordion>
+</lsx-accordion>
 ```
 
 This will be rendered as:
@@ -399,7 +399,7 @@ the youtube URL) is known.
 <img src="screenshots/lsx-youtube.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
 
 ```html
-<lsx-youtube video="HERMqverQWM" aspect-ratio="16by9"><lsx-youtube>
+<lsx-youtube video="HERMqverQWM" aspect-ratio="16by9"></lsx-youtube>
 ```
 
 The video will be embedded with no cookies to protect the viewers identity.
@@ -489,7 +489,7 @@ Question texts can also be HTML formatter:
 <lsx-question type="single-choice">
     <lsx-question-text>
         <b>HTML-formatted</b> question text.
-    <lsx-question-text>
+    </lsx-question-text>
 
     <lsx-answer>Answer 1</lsx-answer>
     <lsx-answer>Answer 2</lsx-answer>
@@ -511,14 +511,6 @@ Answers can be marked correct, wrong and partialy correct:
 <lsx-answer wrong>
     Wrong answer, gives -1 point if ticked.
 </lsx-answer>
-```
-
-The icons used for correction can also be used independently:
-
-```html
-    Correct answer: <span class="icon-checkmark"></span> <br />
-    Partialy correct answer: <span class="icon-checkmark2"></span> <br />
-    Wrong answer: <span class="icon-cross"></span>
 ```
 
 **Lists with emoji symbols**
