@@ -429,11 +429,11 @@ depending on actual need.
 A minimal, working example could be this:
 
 ```html
-<lsx-quiz prefix="Aufgabe #:">
-    <lsx-exercise title="Die Geschichte des Internets">
+<lsx-quiz prefix="Quiz #:">
+    <lsx-exercise title="History of the Internet">
         <lsx-question
             type = "single-choice"
-            text = "a) Wie hieß der technische Vorläufer des heutigen Internets?"
+            text = "a) What was the name of the Internet's precursor?"
         >
             <lsx-answer>ADANET</lsx-answer>
             <lsx-answer correct>ARPANET</lsx-answer>
@@ -443,7 +443,7 @@ A minimal, working example could be this:
 
         <lsx-question
             type = "single-choice"
-            text = "b) In welchem Jahr gingen die ersten Rechner online?"
+            text = "b) In which year the first computer went online?"
         >
             <lsx-answer>1959</lsx-answer>
             <lsx-answer>1963</lsx-answer>
@@ -452,20 +452,20 @@ A minimal, working example could be this:
         </lsx-question>
     </lsx-exercise>
 
-    <lsx-exercise title="Technisches zum World Wide Web">
+    <lsx-exercise title="Technical Details on the Internet">
         <lsx-question
             type = "single-choice"
-            text = "a) Was ist ein Hypertext? "
+            text = "a) What is a Hypertext? "
         >
-            <lsx-answer correct>Ein nicht-linearer Text mit Absprüngen und Verlinkungen</lsx-answer>
-            <lsx-answer>Ein technisch-orientierter Text mit multimedialen Inhalten</lsx-answer>
-            <lsx-answer>Ein für Computer lesbarer Quelltext nach der Compilierung</lsx-answer>
-            <lsx-answer>Ein besonders effizient komprimierter, natürlichsprachlicher Text</lsx-answer>
+            <lsx-answer correct>A non-linear text with navigations and links</lsx-answer>
+            <lsx-answer>A technical-oriented text with multimedia content</lsx-answer>
+            <lsx-answer>A computer readable source code after compilation</lsx-answer>
+            <lsx-answer>A particularly efficiently compressed, natural language text</lsx-answer>
         </lsx-question>
 
         <lsx-question
             type = "single-choice"
-            text = "b) Wie lautet die vollständige URL der DHBW Karlsruhe inklusive aller optionalen Bestandteile? "
+            text = "b) What is the complete URL of DHBW Karlsruhe including all optional components?"
         >
             <lsx-answer><code>karlsruhe.dhbw.de</code></lsx-answer>
             <lsx-answer><code>www.karlsruhe.dhbw.de</code></lsx-answer>
