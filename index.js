@@ -41,6 +41,7 @@ export default class LS_Plugin_ExtraTags {
         this.config.labelQuizPoints         = this.config.labelQuizPoints         || "{1} from {2}";
         this.config.labelQuizEvaluate       = this.config.labelQuizEvaluate       || "Correct";
         this.config.labelQuizNewTry         = this.config.labelQuizNewTry         || "New Try";
+        this.config.quizExerciseHeading     = this.config.quizExerciseHeading     || "h2";
     }
 
     /**

@@ -60,6 +60,7 @@ window.addEventListener("load", () => {
                 labelQuizPoints: "{1} from {2}",
                 labelQuizEvaluate: "Correct",
                 labelQuizNewTry: "New Try",
+                quizExerciseHeading: "h2",
 
                 githubEditUrlPrefix: "https://github.com/DennisSchulmeister/dhbwka-wwi-webprog-quellcodes/tree/master/",
             }),
