@@ -262,45 +262,59 @@ This will be rendered as:
 
 ```html
 <div id="example" class="accordion">
-    <div class="card">
+    <div class="accordion-item">
         <div
-            id            =  "example-page1-title"
-            class          = "card-header font-weight-bold"
-            data-bs-toggle = "collapse"
-            aria-expanded  = "false"
-            aria-controls  = "example-page1-content"
-            href           = "#example-page1-content"
+            id    =  "example-page1-title"
+            class = "accordion-header font-weight-bold"
         >
-            First Page
+            <button
+                class          = "accordion-button bg-light text-body fs-5"
+                type           = "button"
+                data-bs-toggle = "collapse"
+                data-bs-target = "#example-page1-content"
+                aria-controls  = "example-page1-content"
+                aria-expanded  = "false"
+            >
+                First Page
+            </button>
         </div>
         <div
             id              = "example-page1-content"
-            class           = "collapse container-fluid p-3"
+            class           = "accordion-collapse collapse"
             aria-labelledby = "example-page1-title"
-            data-bsparent   = "#example"
+            data-bs-parent  = "#example"
         >
-            Content of the first accordion page.
+            <div class="accordion-body">
+                Content of the first accordion page.
+            </div>
         </div>
     </div>
 
-    <div class="card">
+    <div class="accordion-item">
         <div
-            id             = "example-page2-title"
-            class          = "card-header"
-            data-bs-toggle = "collapse"
-            aria-expanded  = "false"
-            aria-controls  = "example-page2-content"
-            href           = "#example-page2-content"
+            id    = "example-page2-title"
+            class = "accordion-header"
         >
-            <b>Second Page</b>
+            <button
+                class          = "accordion-button bg-light text-body fs-5"
+                type           = "button"
+                data-bs-toggle = "collapse"
+                data-bs-target = "#example-page2-content"
+                aria-controls  = "example-page2-content"
+                aria-expanded  = "false"
+            >
+                <b>Second Page</b>
+            </button>
         </div>
         <div
             id              = "example-page2-content"
-            class           = "collapse container-fluid p-3"
+            class           = "accordion-collapse collapse"
             aria-labelledby = "example-page2-title"
             data-bs-parent  = "#example"
         >
-            Content of the second accordion page.
+            <div class="accordion-body">
+                Content of the second accordion page.
+            </div>
         </div>
     </div>
 </div>
