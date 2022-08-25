@@ -421,8 +421,8 @@ The video will be embedded with no cookies to protect the viewers identity.
 It will be rendered as:
 
 ```html
-<div class="ratio ratio-16x9">
-    <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/HERMqverQWM?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+<div class="embed-responsive ratio ratio-16x9">
+    <iframe src="https://www.youtube-nocookie.com/embed/HERMqverQWM?rel=0&amp;showinfo=0" allowfullscreen></iframe>
 </div>
 ```
 
