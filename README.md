@@ -255,6 +255,19 @@ verticaly, however.
             Content of the second accordion page.
         <lsx-accordion-content>
     </lsx-accordion-page>
+
+    <!-- Long version with left and right title content -->
+    <lsx-accordion-page>
+        <lsx-accordion-title>
+            <div class="w-100 me-3 d-flex justify-content-between">
+                <b><tt>GET</tt></b>
+                <span>Request Resources</span>
+            </div>
+        </lsx-accordion-title>
+        <lsx-accordion-content>
+            Content of the third accordion page
+        </lsx-accordion-content>
+    <lsx-accordion-page>
 </lsx-accordion>
 ```
 

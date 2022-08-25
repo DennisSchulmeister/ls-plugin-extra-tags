@@ -75,7 +75,16 @@ export default class LS_Plugin_ExtraTags {
     copyAttributes(srcElement, dstElement) {
         for (let i = 0; i < srcElement.attributes.length; i++) {
             let attribute = srcElement.attributes[i];
-            dstElement.setAttribute(attribute.name, attribute.value);
+
+            if (attribute.name.toLowerCase() === "class") {
+                // Special treatment for class attribute
+                for (let classname of attribute.value.split(" ")) {
+                    dstElement.classList.add(classname);
+                }
+            } else {
+                // All other attributes can simply be overwritten
+                dstElement.setAttribute(attribute.name, attribute.value);
+            }
         }
     }
 
