@@ -13,14 +13,14 @@ This plugin simplifies content creation with `lecture-slides.js` and
  * Accordion to switch between multiple sub-pages
  * Carousels to manually slide through a linear process
  * Embedded Youtube videos
- * Interactive quizes
+ * Interactive quizzes
  * Lists with emoji symbols
  * Edit and Download GitHub Repositories online
 
 Please note, that this requires the Bootstrap framework in your document.
 For `lecture-slides.js` this is no problem, as Bootstrap is already used
 for the main UI and can be used, anyway. For `mini-tutorial.js` projects
-Bootstrap must be manually added to the project as it is intentionaly not
+Bootstrap must be manually added to the project as it is intentionally not
 defined as a dependency here.
 
 Installation
@@ -96,7 +96,18 @@ window.addEventListener("load", () => {
 Usage
 -----
 
-**Grids**
+ 1. [Grid](#grid)
+ 1. [Info Box](#info-box)
+ 1. [Tab Pages](#tab-pages)
+ 1. [Accordion](#accordion)
+ 1. [Slide Carousel](#slide-carousel)
+ 1. [Youtube Video](#youtube-video)
+ 1. [Interactive Quiz](#interactive-quiz)
+ 1. [List with Emoji Symbols](#list-with-emoji-symbols)
+ 1. [Edit and Download GitHub Repositories Online](#edit-and-download-github-repositories-online)
+
+
+### Grid
 
 This is just a simple wrapper around bootstrap's `<div class="container-fluid">`,
 `<div class="row">` and `<div class="col">` to make the HTML code more readable.
@@ -125,7 +136,8 @@ This will be translated to:
 
 `<lsx-grid>` will be translated to `<div class="container">`.
 
-**Info boxes**
+
+### Info Box
 
 Information boxes highlight important information, like this:
 
@@ -158,7 +170,8 @@ They will be rendered as:
 </div>
 ```
 
-**Tab pages**
+
+### Tab Pages
 
 Tab pages allow to switch between different content pages by clicking
 on a title.
@@ -231,11 +244,12 @@ They will be rendered as plain bootstrap tab pages:
 </div>
 ```
 
-**Accordion**
+
+### Accordion
 
 An accordion works similar to tab pages in that it allows to switch between
 multiple sub-pages. Unlike tab pages, the accordion pages are stacked
-verticaly, however.
+vertically, however.
 
 <img src="screenshots/lsx-accordion.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
 
@@ -336,10 +350,11 @@ This will be rendered as:
 The attribute `active` can be used to open one page by default. Accordingly
 the attribute `bold` can be used to render a bold page title.
 
-**Slide Carousel**
+
+### Slide Carousel
 
 A carousel allows to manually slide through a linear sequence of images.
-Unlike typical HTML carousels, this one doesn't automaticaly move but
+Unlike typical HTML carousels, this one doesn't automatically move but
 rather requires to click a link to see the next card.
 
 <img src="screenshots/lsx-carousel.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
@@ -419,7 +434,8 @@ Carousels will be rendered to plain bootstrap carousels:
 </div>
 ```
 
-**Youtube Videos**
+
+### Youtube Video
 
 This element allows to embedded any youtube video, whose video ID (found in
 the youtube URL) is known.
@@ -446,25 +462,26 @@ The aspect ratio can be any ration supported by bootstrap:
  * `4x3`
  * `1x1`
 
-**Interactive Quizes**
 
-Currently this element allows to define interactive quizes with multiple-choice
-and single-choice questions. In future, different answer types could be added
-depending on actual need.
+### Interactive Quiz
+
+This element allows to define interactive quizzes with types of answers and automatic validation.
 
 <img src="screenshots/lsx-quiz.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
 
-A minimal, working example could be this:
+A minimal example showcasing all answer types could be this:
 
 ```html
-<lsx-quiz prefix="Quiz #:">
+<lsx-quiz prefix="Exercise #:">
     <lsx-exercise title="History of the Internet">
+        <!-- Single Choice Questions -->
         <lsx-question
-            type = "single-choice"
-            text = "a) What was the name of the Internet's precursor?"
+            type   = "single-choice"
+            text   = "a) What was the name of the Internet's precursor?"
+            hint   = "Try one of the acronyms."
         >
             <lsx-answer>ADANET</lsx-answer>
-            <lsx-answer correct>ARPANET</lsx-answer>
+            <lsx-answer correct points="2">ARPANET</lsx-answer>
             <lsx-answer>Darker Net</lsx-answer>
             <lsx-answer>Global Web</lsx-answer>
         </lsx-question>
@@ -481,37 +498,161 @@ A minimal, working example could be this:
     </lsx-exercise>
 
     <lsx-exercise title="Technical Details on the Internet">
+        <!-- Multiple-Choice Question -->
         <lsx-question
-            type = "single-choice"
-            text = "a) What is a Hypertext? "
+            type = "multiple-choice"
+            text = "a) Which of the following can be part of a web address (URL)?"
         >
-            <lsx-answer correct>A non-linear text with navigations and links</lsx-answer>
-            <lsx-answer>A technical-oriented text with multimedia content</lsx-answer>
-            <lsx-answer>A computer readable source code after compilation</lsx-answer>
-            <lsx-answer>A particularly efficiently compressed, natural language text</lsx-answer>
+            <lsx-answer correct>Protocol</lsx-answer>
+            <lsx-answer>First name</lsx-answer>
+            <lsx-answer>Last name</lsx-answer>
+            <lsx-answer correct>Host name</lsx-answer>
+            <lsx-answer>Postcode</lsx-answer>
+            <lsx-answer correct>Port number</lsx-answer>
+            <lsx-answer>House number</lsx-answer>
+            <lsx-answer correct>Path</lsx-answer>
+            <lsx-answer correct>Query parameters</lsx-answer>
+            <lsx-answer>Geo coordinates</lsx-answer>
+            <lsx-answer correct>Anchor</lsx-answer>
+            <lsx-answer>Harbour</lsx-answer>
         </lsx-question>
 
+        <!-- Assignment Question (select positions can be "before", "after", "above", "below") -->
         <lsx-question
-            type = "single-choice"
-            text = "b) What is the complete URL of DHBW Karlsruhe including all optional components?"
+            type            = "assignment"
+            text            = "b) Which web technology is used for the following purposes?"
+            label-length    = "30em"
+            select-position = "after"
+            select-style    = "font-style: italic;"
         >
-            <lsx-answer><code>karlsruhe.dhbw.de</code></lsx-answer>
-            <lsx-answer><code>www.karlsruhe.dhbw.de</code></lsx-answer>
-            <lsx-answer><code>https://www.karlsruhe.dhbw.de</code></lsx-answer>
-            <lsx-answer correct><code>https://www.karlsruhe.dhbw.de/</code></lsx-answer>
-            <lsx-answer><code>https://www.karlsruhe.dhbw.de/dhbw-karlsruhe/</code></lsx-answer>
-            <lsx-answer><code>https://www.karlsruhe.dhbw.de/en/general/about-us.html</code></lsx-answer>
-            <lsx-answer><code>https://www.karlsruhe.dhbw.de/en/general/about-us.html?lang=en</code></lsx-answer>
+            <lsx-assignment answer="URL">To uniquely address resources at the world wide web:</lsx-assignment>
+            <lsx-assignment answer="HTTP">To request data from a server and send it to the client:</lsx-assignment>
+            <lsx-assignment answer="HTML">To define the structure and content of a web site:</lsx-assignment>
+            <lsx-assignment answer="CSS">To define stylesheets for the visual appearance of a web site:</lsx-assignment>
+            <lsx-assignment answer="JavaScript">To execute logic on the client e.g. for interactive behavior:</lsx-assignment>
+
+            <!-- Dummy answers (can also be marked as wrong or partially-correct) -->
+            <lsx-assignment answer="SVG" wrong></lsx-assignment>
+            <lsx-assignment answer="PNG" wrong></lsx-assignment>
+            <lsx-assignment answer="PDF" wrong></lsx-assignment>
+            <lsx-assignment answer="SMTP" partially-correct></lsx-assignment>
+            <lsx-assignment answer="FTP"  partially-correct></lsx-assignment>
+        </lsx-question>
+
+        <!-- Gap Text (line-start switches to source-code mode which preserves white-space) -->
+        <lsx-question
+            type = "gap-text"
+            text = "c) Fill out the blanks in the following source code"
+            mode = "source-code"
+        >
+            <!-- Length must be a CSS length -->
+            <lsx-gap answer="<!DOCTYPE html>" ignore-case ignore-spaces></lsx-gap>
+            &lt;<lsx-gap answer="html" ignore-case></lsx-gap>&gt;
+                &lt;head&gt;
+                   ...
+                &lt;/head&gt;
+                &lt;<lsx-gap answer="body" ignore-case></lsx-gap>&gt;
+                   ...
+                   <lsx-gap length="10em" regex=".*"></lsx-gap>
+                &lt;/body&gt;
+            &lt;<lsx-gap answer="/html" ignore-case ignore-spaces></lsx-gap>&gt;
+        </lsx-question>
+    </lsx-exercise>
+
+    <lsx-exercise title="Fundamental Electronics">
+        <!-- Assignment Question with multiple options side-by-side -->
+        <lsx-question
+            type            = "assignment"
+            text            = "a) Which electrical components are shown on the following pictures?"
+            select-length   = "20em"
+            select-position = "below"
+            select-style    = "font-style: italic;"
+            empty-answer    = "<i>(no selection)</i>"
+            empty-points    = "-2"
+        >
+            <lsx-question-line>
+                <lsx-assignment answer="Resistor"><img src="..."></lsx-assignment>
+                <lsx-assignment answer="Capacitor"><img src="..."></lsx-assignment>
+                <lsx-assignment answer="Coil"><img src="..."></lsx-assignment>
+            </lsx-question-line>
+
+            <lsx-question-line>
+                <lsx-assignment answer="Switch"><img src="..."></lsx-assignment>
+                <lsx-assignment answer="Potentiometer"><img src="..."></lsx-assignment>
+                <lsx-assignment answer="Connector"><img src="..."></lsx-assignment>
+            </lsx-question-line>
+        </lsx-question>
+
+        <!-- Gap text can also be used for simple text input. -->
+        <!-- <lsx-question-line> can be optionally used to split the text into lines with their own correction marks. -->
+        <lsx-question
+            type = "gap-text"
+            text = "b) According to Ohm's Law, which formulas convert between Voltage U, Resistance R and Current I?"
+            mode = "split-lines"
+        >
+            U = <lsx-gap answer="R * I" ignore-case ignore-spaces></lsx-gap>
+            R = <lsx-gap answer="U / I" ignore-case ignore-spaces></lsx-gap>
+            I = <lsx-gap answer="U / R" ignore-case ignore-spaces></lsx-gap>
+        </lsx-question>
+
+        <!-- Same question with explicit <lsx-question-lines> -->
+        <lsx-question
+            type = "gap-text"
+            text = "b) According to Ohm's Law, which formulas convert between Voltage U, Resistance R and Current I?"
+        >
+            <lsx-question-line>
+                U = <lsx-gap answer="R * I" ignore-case ignore-spaces></lsx-gap>
+            </lsx-question-line>
+            <lsx-question-line>
+                R = <lsx-gap answer="U / I" ignore-case ignore-spaces></lsx-gap>
+            </lsx-question-line>
+            <lsx-question-line>
+                I = <lsx-gap answer="U / R" ignore-case ignore-spaces></lsx-gap>
+            </lsx-question-line>
+        </lsx-question>
+
+        <!-- Free-Text Question (multi line) -->
+        <lsx-question
+            type = "free-text"
+            text = "c) Why is the electrical current flowing through an electrical circuit proportional to the input voltage and the circuit's resistance?"
+        >
+            <!-- Editor can be "html" or "plain" -->
+            <lsx-free-text
+                initial  = "Your answer here"
+                sample   = "While voltage describes ..."
+                editor   = "html"
+                validate = "validateFreeText(event)"
+            >
+                <!-- Alternative to the attributes -->
+                <lsx-initial-answer>
+                    Your answer here
+                </lsx-initial-answer>
+
+                <lsx-sample-answer>
+                    <p>
+                        While voltage describes the potential energy carried by the electrons (the higher the voltage, the more energy
+                        the electrons transport), current describes the number of electrons flowing through the circuit in a time period
+                        (though not quite correct, imagine it as the "speed of the electrons").
+                    </p>
+                    <p>
+                        However the electrons cannot freely flow through the circuit but are hindered by the circuit element's individual
+                        resistance. The higher the resistance, the more energy gets lost (actually gets transformed into heat) by the electrons
+                        traveling through the circuit. As this reduces the energy that is making the electrons flow in the first place, this in
+                        turn reduces the rate or "speed" of the resulting electron flow.
+                    </p>
+                </lsx-sample-answer>
+            </lsx-free-text>
         </lsx-question>
     </lsx-exercise>
 </lsx-quiz>
 ```
 
 The nested structure where a `<lsx-quiz>` contains many `<lsx-exercise>`, which
-contain many `<lsx-question>`, which contain many `<lsx-answer>` is important
-for this feature to work.
+contain many `<lsx-question>` and so on is important for this feature to work.
 
-Question texts can also be HTML formatter:
+Question texts and hints can also be HTML formatted, either by including HTML tags
+in the attributes or with explicit `<lsx-question-text>` and `<lsx-question-hint>`
+elements.
 
 ```html
 <lsx-question type="single-choice">
@@ -519,29 +660,80 @@ Question texts can also be HTML formatter:
         <b>HTML-formatted</b> question text.
     </lsx-question-text>
 
+    <lsx-question-hint>
+        The second answer is mostly right.
+    </lsx-question-hint>
+
     <lsx-answer>Answer 1</lsx-answer>
     <lsx-answer>Answer 2</lsx-answer>
     …
-</lsx-question>
+</lsx-question-hint>
 ```
 
-Answers can be marked correct, wrong and partialy correct:
+Answers can be marked correct, wrong and partially correct:
 
 ```html
 <lsx-answer correct>
     Correct answer, gives 1 point if ticked.
 </lsx-answer>
 
-<lsx-answer partialy-correct>
-    Partialy correct answer, gives 0.5 points if ticked.
+<lsx-answer partially-correct>
+    Partially correct answer, gives 0.5 points if ticked.
 </lsx-answer>
 
 <lsx-answer wrong>
     Wrong answer, gives -1 point if ticked.
 </lsx-answer>
+
+<lsx-answer>
+    Neutral answer, gives 0 points if ticked.
+</lsx-answer>
 ```
 
-**Lists with emoji symbols**
+The number of points can be overruled, if needed. But still each answer should be assigned
+a correctness level.
+
+```html
+<lsx-answer correct points="5">Correct answer</lsx-answer>
+<lsx-answer wrong points="-3">Wrong answer</lsx-answer>
+...
+```
+
+The elements `<lsx-gap>` and `<lsx-free-text>` offer the following options to validate the answers:
+
+ * Verbatim expected answer:
+    * Attribute `answer`: String with the expected answer
+    * Attribute `ignore-case`: Ignore lower/upper case differences from the expected answer
+    * Attribute `ignore-spaces`: Ignore all whitespace differences from the expected answer
+* Regular expression:
+    * Attribute `length`: Width of the input field (e.g. `10em`)
+    * Attribute `regexp`: Regular expression that must return a match
+* Custom logic:
+    * Attribute `length`: Width of the input field (e.g. `10em`)
+    * Attribute `validate`: Javascript code for validation event handler:
+
+      ```js
+      function custom_validation(event) {
+        // event.target is the <lsx...>-Element
+        // event.source is the internal object representing the input field
+        // must return a decimal value between [0...1] with the score percentage
+        return 1;
+      }
+      ```
+
+      The parameters are:
+
+        * `questionElement`: The `<lsx-question>` element
+        * `answerElement`: The `<lsx-gap>` or `<lsx-free-text>` element
+        * `answerText`: The actual answer string to validate
+
+      The function must return one of the following:
+
+        * `true` or `"correct"`: When the answer is right
+        * `false` or `"wrong"`: When the answer is wrong
+        * `"partially-correct"`: When the answer is only partially right
+
+### List with Emoji Symbols
 
 Plain unordered lists sometimes look a bit boring. The custom element
 `<lsx-ul>` thus allows to create lists with an emoji as a list symbol:
@@ -556,7 +748,7 @@ Plain unordered lists sometimes look a bit boring. The custom element
 </lsx-ul>
 ```
 
-Normaly this will still be rendered as an html list:
+Normally this will still be rendered as an html list:
 
 ```html
 <ul style="list-style-type: '⚽  '";>
@@ -596,9 +788,9 @@ The list will be rendered as a table, instead:
 ```
 
 
-**Edit and Download GitHub Repositories online**
+### Edit and Download GitHub Repositories Online
 
-For programming assignments you usualy need to provide the source code and
+For programming assignments you usually need to provide the source code and
 required tools out of band. But if the code is publicly available on GitHub,
 you can use this element to provide a link to start an online IDE or directly
 download the source code from GitHub:
@@ -611,7 +803,7 @@ download the source code from GitHub:
 ></lsx-github-edit>
 ```
 
-Optionaly an different url can be given for the download button, e.g. to also
+Optionally an different url can be given for the download button, e.g. to also
 include a sample solution:
 
 ```html
@@ -630,5 +822,5 @@ Copyright
 
 lecture-slides.js: https://www.github.com/DennisSchulmeister/lecture-slides.js <br/>
 This plugin: https://github.com/DennisSchulmeister/ls-plugin-extra-tags <br/>
-© 2020 – 2022 Dennis Schulmeister-Zimolong <dennis@pingu-mail.de> <br/>
+© 2020 – 2023 Dennis Schulmeister-Zimolong <dennis@pingu-mail.de> <br/>
 Licensed under the 2-Clause BSD License.
