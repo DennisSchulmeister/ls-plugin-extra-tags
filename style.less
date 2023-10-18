@@ -5,7 +5,7 @@
  */
 
 /**
- * Quizes
+ * Quizzes
  */
 .lsx-quiz {
     @answer-color-text:    rgb(80, 80, 80);
@@ -23,6 +23,7 @@
     justify-content: stretch;
     align-items: stretch;
     grid-row-gap: 0;
+    overflow: scroll;
 
     & > * {
         padding: @padding;
@@ -202,6 +203,26 @@
     }
 
     // Gap-text questions
+    .lsx-quiz-gap-text {
+        font-size: 90%;
+
+        &[data-mode="source-code"] {
+            font-family: monospace;
+        }
+
+        .lsx-quiz-gap-text-input {
+            color: @answer-color-text;
+            background: none;
+            border: 0px solid @answer-color-text;
+            border-bottom-width: 1px;
+        }
+
+        .lsx-quiz-gap-text-expected {
+            font-size: 70%;
+            font-style: italic;
+            color: @status-color-wrong;
+        }
+    }
 
     // Free-text questions
 }

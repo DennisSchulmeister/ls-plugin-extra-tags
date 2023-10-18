@@ -476,9 +476,9 @@ A minimal example showcasing all answer types could be this:
     <lsx-exercise title="History of the Internet">
         <!-- Single Choice Questions -->
         <lsx-question
-            type   = "single-choice"
-            text   = "a) What was the name of the Internet's precursor?"
-            hint   = "Try one of the acronyms."
+            type = "single-choice"
+            text = "a) What was the name of the Internet's precursor?"
+            hint = "Try one of the acronyms."
         >
             <lsx-answer>ADANET</lsx-answer>
             <lsx-answer correct points="2">ARPANET</lsx-answer>
@@ -500,12 +500,13 @@ A minimal example showcasing all answer types could be this:
     <lsx-exercise title="Technical Details on the Internet">
         <!-- Multiple-Choice Question -->
         <lsx-question
-            type = "multiple-choice"
-            text = "a) Which of the following can be part of a web address (URL)?"
+            type         = "multiple-choice"
+            text         = "a) Which of the following can be part of a web address (URL)?"
+            wrong-points = "-2"
         >
             <lsx-answer correct>Protocol</lsx-answer>
-            <lsx-answer>First name</lsx-answer>
-            <lsx-answer>Last name</lsx-answer>
+            <lsx-answer points="-1">First name</lsx-answer>
+            <lsx-answer points="-1">Last name</lsx-answer>
             <lsx-answer correct>Host name</lsx-answer>
             <lsx-answer>Postcode</lsx-answer>
             <lsx-answer correct>Port number</lsx-answer>
@@ -553,9 +554,10 @@ A minimal example showcasing all answer types could be this:
                 &lt;/head&gt;
                 &lt;<lsx-gap answer="body" ignore-case></lsx-gap>&gt;
                    ...
-                   <lsx-gap length="10em" regex=".*"></lsx-gap>
+                   <lsx-gap length="10em" regexp=".*" answer="<h1>Example</h1>"></lsx-gap>
                 &lt;/body&gt;
-            &lt;<lsx-gap answer="/html" ignore-case ignore-spaces></lsx-gap>&gt;
+                <!-- Using a <lsx-answer> to define partially correct answers -->
+            &lt;<lsx-gap answer="/html" ignore-case ignore-spaces points="2"><lsx-answer partially-correct points="1">html</lsx-answer></lsx-gap>&gt;
         </lsx-question>
     </lsx-exercise>
 
@@ -568,7 +570,8 @@ A minimal example showcasing all answer types could be this:
             select-position = "below"
             select-style    = "font-style: italic;"
             empty-answer    = "<i>(no selection)</i>"
-            empty-points    = "-2"
+            empty-points    = "-1"
+            wrong-points    = "-2"
         >
             <lsx-question-line>
                 <lsx-assignment answer="Resistor"><img src="..."></lsx-assignment>
@@ -586,9 +589,11 @@ A minimal example showcasing all answer types could be this:
         <!-- Gap text can also be used for simple text input. -->
         <!-- <lsx-question-line> can be optionally used to split the text into lines with their own correction marks. -->
         <lsx-question
-            type = "gap-text"
-            text = "b) According to Ohm's Law, which formulas convert between Voltage U, Resistance R and Current I?"
-            mode = "split-lines"
+            type         = "gap-text"
+            text         = "b) According to Ohm's Law, which formulas convert between Voltage U, Resistance R and Current I?"
+            mode         = "split-lines"
+            empty-points = "-1"
+            wrong-points = "-2"
         >
             U = <lsx-gap answer="R * I" ignore-case ignore-spaces></lsx-gap>
             R = <lsx-gap answer="U / I" ignore-case ignore-spaces></lsx-gap>
@@ -618,10 +623,12 @@ A minimal example showcasing all answer types could be this:
         >
             <!-- Editor can be "html" or "plain" -->
             <lsx-free-text
-                initial  = "Your answer here"
-                sample   = "While voltage describes ..."
-                editor   = "html"
-                validate = "validateFreeText(event)"
+                initial      = "Your answer here"
+                sample       = "While voltage describes ..."
+                editor       = "html"
+                validate     = "customValidationFunction"
+                empty-points = "-1"
+                wrong-points = "-2"
             >
                 <!-- Alternative to the attributes -->
                 <lsx-initial-answer>
@@ -703,35 +710,44 @@ The elements `<lsx-gap>` and `<lsx-free-text>` offer the following options to va
 
  * Verbatim expected answer:
     * Attribute `answer`: String with the expected answer
-    * Attribute `ignore-case`: Ignore lower/upper case differences from the expected answer
-    * Attribute `ignore-spaces`: Ignore all whitespace differences from the expected answer
+    * Attribute `ignore-case`: Ignore lower/upper case differences from the expected answer (by converting the answer to lower-case)
+    * Attribute `ignore-spaces`: Ignore all whitespace differences from the expected answer (by removing all whitespace from the answer)
 * Regular expression:
     * Attribute `length`: Width of the input field (e.g. `10em`)
     * Attribute `regexp`: Regular expression that must return a match
+    * Attribute `answer`: Example answer shown as expected answer after validation
 * Custom logic:
     * Attribute `length`: Width of the input field (e.g. `10em`)
-    * Attribute `validate`: Javascript code for validation event handler:
+    * Attribute `validate`: Name of a global Javascript function with the following signature:
 
       ```js
-      function custom_validation(event) {
-        // event.target is the <lsx...>-Element
-        // event.source is the internal object representing the input field
-        // must return a decimal value between [0...1] with the score percentage
-        return 1;
+      /**
+       * Custom validation function for free-text answers. Receives a parameter object with the following
+       * keys. The implementing function can omit not-needed parameters from its declaration of the form
+       * below is used.
+       *
+       *  `answer` contains the answer text to be validated.
+
+       *  `evaluation` contains the properties `status`, `points` and `expected`, which must be changed.
+       *    * `status` must be set to `status.unknown`, `status.correct`, `status.partial` or `status.wrong`.
+       *      `status.unknown` means, that other validation methods should be tried (see remarks below)
+       *    * `points` must be set to the credited points. Can be negative to deduce points.
+       *    * `expected` should contain the expected correct answer, of the result is not `status.correct`.
+       *
+       * The remaining parameters contain the corresponding <lsx-...> DOM elements
+       */
+      function custom_validation({answer, evaluation, status, gapElement, questionElement, exerciseElement, quizElement}) {
+          // Custom validation logic
       }
       ```
 
-      The parameters are:
-
-        * `questionElement`: The `<lsx-question>` element
-        * `answerElement`: The `<lsx-gap>` or `<lsx-free-text>` element
-        * `answerText`: The actual answer string to validate
-
-      The function must return one of the following:
-
-        * `true` or `"correct"`: When the answer is right
-        * `false` or `"wrong"`: When the answer is wrong
-        * `"partially-correct"`: When the answer is only partially right
+      At first the validation status will be `unknown` and the validation function will be executed, if defined.
+      If it doesn't exist or the status remains `unknown`, the DOM event `lsx-quiz-validation` will be raised on
+      the `<lsx-gap>`/`<lsx-free-text>` element. But note, that the event cannot bubble up to the parent HTML
+      elements, since they are torn apart when the DOM structure is built. The event details (`event.detail`)
+      contain the same attributes as the validation function would receive. If the result is still unchanged,
+      the validation rules based on the other HTML attributes and nested `<lsx-answer>` elements are executed
+      in the order they were defined. The first matching rule determines the result.
 
 ### List with Emoji Symbols
 

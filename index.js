@@ -10,7 +10,7 @@ import LSX_Carousel from "./lib/lsx-carousel.js";
 import LSX_GithubEdit from "./lib/lsx-github-edit.js";
 import LSX_Grid from "./lib/lsx-grid.js";
 import LSX_InfoBox from "./lib/lsx-info-box.js";
-import LSX_Quiz from "./lib/lsx-quiz-v2.js";
+import LSX_Quiz from "./lib/lsx-quiz.js";
 import LSX_TabPages from "./lib/lsx-tab-pages.js";
 import LSX_ul from "./lib/lsx-ul.js";
 import LSX_Youtube from "./lib/lsx-youtube.js";
