@@ -490,6 +490,10 @@ A minimal example showcasing all answer types could be this:
             type = "single-choice"
             text = "b) In which year the first computer went online?"
         >
+            <lsx-question-hint>
+                It was earlier than you might think.
+            </lsx-question-hint>
+
             <lsx-answer>1959</lsx-answer>
             <lsx-answer>1963</lsx-answer>
             <lsx-answer correct>1969</lsx-answer>
@@ -503,19 +507,26 @@ A minimal example showcasing all answer types could be this:
             type         = "multiple-choice"
             text         = "a) Which of the following can be part of a web address (URL)?"
             wrong-points = "-2"
+            label-length = "8em"
         >
-            <lsx-answer correct>Protocol</lsx-answer>
-            <lsx-answer points="-1">First name</lsx-answer>
-            <lsx-answer points="-1">Last name</lsx-answer>
-            <lsx-answer correct>Host name</lsx-answer>
-            <lsx-answer>Postcode</lsx-answer>
-            <lsx-answer correct>Port number</lsx-answer>
-            <lsx-answer>House number</lsx-answer>
-            <lsx-answer correct>Path</lsx-answer>
-            <lsx-answer correct>Query parameters</lsx-answer>
-            <lsx-answer>Geo coordinates</lsx-answer>
-            <lsx-answer correct>Anchor</lsx-answer>
-            <lsx-answer>Harbour</lsx-answer>
+            <lsx-question-line>
+                <lsx-answer correct>Protocol</lsx-answer>
+                <lsx-answer points="-1">First name</lsx-answer>
+                <lsx-answer points="-1">Last name</lsx-answer>
+                <lsx-answer correct>Host name</lsx-answer>
+            </lsx-question-line>
+            <lsx-question-line>
+                <lsx-answer>Postcode</lsx-answer>
+                <lsx-answer correct>Port number</lsx-answer>
+                <lsx-answer>House number</lsx-answer>
+                <lsx-answer correct>Path</lsx-answer>
+            </lsx-question-line>
+            <lsx-question-line>
+                <lsx-answer correct>Query parameters</lsx-answer>
+                <lsx-answer>Geo coordinates</lsx-answer>
+                <lsx-answer correct>Anchor</lsx-answer>
+                <lsx-answer>Harbour</lsx-answer>
+            </lsx-question-line>
         </lsx-question>
 
         <!-- Assignment Question (select positions can be "before", "after", "above", "below") -->
