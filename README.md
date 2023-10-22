@@ -670,7 +670,7 @@ contain many `<lsx-question>` and so on is important for this feature to work.
 
 Question texts and hints can also be HTML formatted, either by including HTML tags
 in the attributes or with explicit `<lsx-question-text>` and `<lsx-question-hint>`
-elements.
+(short form `<lsx-text>` resp. `<lsx-hint>`) elements.
 
 ```html
 <lsx-question type="single-choice">
@@ -685,7 +685,16 @@ elements.
     <lsx-answer>Answer 1</lsx-answer>
     <lsx-answer>Answer 2</lsx-answer>
     …
-</lsx-question-hint>
+</lsx-question>
+
+<lsx-question type="multiple-choice">
+    <lsx-text>...</lsx-text>
+    <lsx-hint>...</lsx-hint>
+
+    <lsx-answer>Answer 1</lsx-answer>
+    <lsx-answer>Answer 2</lsx-answer>
+    …
+</lsx-question>
 ```
 
 Answers can be marked correct, wrong and partially correct:
