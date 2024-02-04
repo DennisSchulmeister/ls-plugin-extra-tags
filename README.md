@@ -1,6 +1,20 @@
 lecture-slides.js: Additional HTML Tags
 =======================================
 
+1. [Description](#description)
+1. [Installation](#installation)
+1. [Usage](#usage)
+    1. [Grid](#grid)
+    1. [Info Box](#info-box)
+    1. [Card](#card)
+    1. [Tab Pages](#tab-pages)
+    1. [Accordion](#accordion)
+    1. [Slide Carousel](#slide-carousel)
+    1. [Youtube Video](#youtube-video)
+    1. [Interactive Quiz](#interactive-quiz)
+    1. [List with Emoji Symbols](#list-with-emoji-symbols)
+    1. [Edit and Download GitHub Repositories Online](#edit-and-download-github-repositories-online)
+
 Description
 -----------
 
@@ -96,17 +110,6 @@ window.addEventListener("load", () => {
 Usage
 -----
 
- 1. [Grid](#grid)
- 1. [Info Box](#info-box)
- 1. [Tab Pages](#tab-pages)
- 1. [Accordion](#accordion)
- 1. [Slide Carousel](#slide-carousel)
- 1. [Youtube Video](#youtube-video)
- 1. [Interactive Quiz](#interactive-quiz)
- 1. [List with Emoji Symbols](#list-with-emoji-symbols)
- 1. [Edit and Download GitHub Repositories Online](#edit-and-download-github-repositories-online)
-
-
 ### Grid
 
 This is just a simple wrapper around bootstrap's `<div class="container-fluid">`,
@@ -170,6 +173,75 @@ They will be rendered as:
 </div>
 ```
 
+### Card
+
+Content cards with optional top/bottom image, header, body and footer.
+
+<img src="screenshots/lsx-card-1.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
+<img src="screenshots/lsx-card-2.png" style="border: 1px solid lightgrey; margin-bottom: 1em" />
+
+Simple markup:
+
+```html
+<lsx-card title="Card Title" bold>
+    Card Body
+</lsx-card>
+```
+
+Alternative:
+
+```html
+<lsx-card header="Card Title" bold>
+    Card Body
+</lsx-card>
+```
+
+Will both be rendered as:
+
+```html
+<div class="card">
+    <div class="card-title fw-bold">
+        Card Title
+    </div>
+    <div class="card-body">
+        Card Body
+    </div>
+</div>
+```
+
+Complex markup:
+
+```html
+<lsx-card img="image.jpg" img-position="top" img-alt="Alt Text">
+    <lsx-card-header>
+        Card Header
+    </lsx-card-header>
+    <lsx-card-body>
+        Card Body
+    </lsx-card-body>
+    <lsx-card-footer>
+        Card Footer
+    </lsx-card-footer>
+</lsx-card>
+```
+
+Will be rendered as:
+
+```html
+<div class="card">
+    <img src="image.jpg" class="card-img-top" alt="Alt Text">
+
+    <div class="card-title fw-bold">
+        Card Title
+    </div>
+    <div class="card-body">
+        Card Body
+    </div>
+    <div class="card-footer">
+        Card Footer
+    </div>
+</div>
+```
 
 ### Tab Pages
 

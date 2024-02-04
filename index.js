@@ -5,15 +5,16 @@
  */
 "use strict";
 
-import LSX_Accordion from "./lib/lsx-accordion.js";
-import LSX_Carousel from "./lib/lsx-carousel.js";
+import LSX_Accordion  from "./lib/lsx-accordion.js";
+import LSX_Card       from "./lib/lsx-card.js";
+import LSX_Carousel   from "./lib/lsx-carousel.js";
 import LSX_GithubEdit from "./lib/lsx-github-edit.js";
-import LSX_Grid from "./lib/lsx-grid.js";
-import LSX_InfoBox from "./lib/lsx-info-box.js";
-import LSX_Quiz from "./lib/lsx-quiz.js";
-import LSX_TabPages from "./lib/lsx-tab-pages.js";
-import LSX_ul from "./lib/lsx-ul.js";
-import LSX_Youtube from "./lib/lsx-youtube.js";
+import LSX_Grid       from "./lib/lsx-grid.js";
+import LSX_InfoBox    from "./lib/lsx-info-box.js";
+import LSX_Quiz       from "./lib/lsx-quiz.js";
+import LSX_TabPages   from "./lib/lsx-tab-pages.js";
+import LSX_ul         from "./lib/lsx-ul.js";
+import LSX_Youtube    from "./lib/lsx-youtube.js";
 
 import "./style.less";
 import "./icomoon/style.css";
@@ -51,6 +52,7 @@ export default class LS_Plugin_ExtraTags {
     preprocessHtml(html) {
         [
             LSX_Accordion,
+            LSX_Card,
             LSX_Carousel,
             LSX_GithubEdit,
             LSX_Grid,
