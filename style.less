@@ -8,11 +8,14 @@
  * Modal Windows
  */
 .lsx-modal-thumbnail {
+    cursor: pointer;
+}
+
+.lsx-modal-image-thumbnail {
     width: 25rem;
     max-width: 100%;
     font-size: 80%;
     color: gray;
-    cursor: pointer;
 }
 
 .lsx-modal {
@@ -24,13 +27,19 @@
     z-index: 9999;
 
     background: rgba(0,0,0, 0.5);
+    backdrop-filter: blur(10px);
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     padding: 2em;
+
+    @media screen and (min-width: 900px) {
+        padding: 10em;
+    }
 }
+
 
 /**
  * Quizzes
