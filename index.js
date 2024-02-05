@@ -4,19 +4,21 @@
 * Licensed under the 2-Clause BSD License.
  */
 "use strict";
+import { copyAttributes } from "../ls-utils/dom_utils.js";
+import { moveChildNodes } from "../ls-utils/dom_utils.js";
 
-import LSX_Accordion  from "./lib/lsx-accordion.js";
-import LSX_Card       from "./lib/lsx-card.js";
-import LSX_Carousel   from "./lib/lsx-carousel.js";
-import LSX_GithubEdit from "./lib/lsx-github-edit.js";
-import LSX_Grid       from "./lib/lsx-grid.js";
-import LSX_InfoBox    from "./lib/lsx-info-box.js";
-import LSX_Modal      from "./lib/lsx-model.js";
-import LSX_ModalImage from "./lib/lsx-model-image.js";
-import LSX_Quiz       from "./lib/lsx-quiz.js";
-import LSX_TabPages   from "./lib/lsx-tab-pages.js";
-import LSX_ul         from "./lib/lsx-ul.js";
-import LSX_Youtube    from "./lib/lsx-youtube.js";
+import LSX_Accordion      from "./lib/lsx-accordion.js";
+import LSX_Card           from "./lib/lsx-card.js";
+import LSX_Carousel       from "./lib/lsx-carousel.js";
+import LSX_GithubEdit     from "./lib/lsx-github-edit.js";
+import LSX_Grid           from "./lib/lsx-grid.js";
+import LSX_InfoBox        from "./lib/lsx-info-box.js";
+import LSX_Modal          from "./lib/lsx-model.js";
+import LSX_ModalImage     from "./lib/lsx-model-image.js";
+import LSX_Quiz           from "./lib/lsx-quiz.js";
+import LSX_TabPages       from "./lib/lsx-tab-pages.js";
+import LSX_ul             from "./lib/lsx-ul.js";
+import LSX_Youtube        from "./lib/lsx-youtube.js";
 
 import "./style.less";
 import "./icomoon/style.css";
@@ -79,19 +81,7 @@ export default class LS_Plugin_ExtraTags {
      * @param {DOMElement} dstElement Destination element
      */
     copyAttributes(srcElement, dstElement) {
-        for (let i = 0; i < srcElement.attributes.length; i++) {
-            let attribute = srcElement.attributes[i];
-
-            if (attribute.name.toLowerCase() === "class") {
-                // Special treatment for class attribute
-                for (let classname of attribute.value.split(" ")) {
-                    dstElement.classList.add(classname);
-                }
-            } else {
-                // All other attributes can simply be overwritten
-                dstElement.setAttribute(attribute.name, attribute.value);
-            }
-        }
+        copyAttributes(srcElement, dstElement);
     }
 
     /**
@@ -102,11 +92,7 @@ export default class LS_Plugin_ExtraTags {
      * @param {DOMElement} dstElement Destination element
      */
     moveChildNodes(srcElement, dstElement) {
-        let len = srcElement.childNodes.length;
-
-        for (let i = 0; i < len; i++) {
-            dstElement.append(srcElement.childNodes[0]);
-        }
+        moveChildNodes(srcElement, dstElement);
     }
 
     /**

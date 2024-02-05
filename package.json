@@ -1,13 +1,13 @@
 {
   "name": "@dschulmeis/ls-plugin-extra-tags",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "lecture-slides.js plugin: Additional HTML tags",
   "main": "index.js",
   "repository": "git@github.com:DennisSchulmeister/ls-plugin-extra-tags.git",
   "author": "Dennis Schulmeister-Zimolong <dennis@pingu-mail.de>",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "@dschulmeis/ls-utils": "^1.1.0"
+    "@dschulmeis/ls-utils": "^1.3.0"
   },
   "scripts": {
     "do-publish": "npm publish --access=public"
