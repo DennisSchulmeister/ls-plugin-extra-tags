@@ -13,12 +13,14 @@ import LSX_Carousel       from "./lib/lsx-carousel.js";
 import LSX_GithubEdit     from "./lib/lsx-github-edit.js";
 import LSX_Grid           from "./lib/lsx-grid.js";
 import LSX_InfoBox        from "./lib/lsx-info-box.js";
-import LSX_Modal          from "./lib/lsx-modal.js";
-import LSX_ModalImage     from "./lib/lsx-modal-image.js";
 import LSX_Quiz           from "./lib/lsx-quiz.js";
 import LSX_TabPages       from "./lib/lsx-tab-pages.js";
 import LSX_ul             from "./lib/lsx-ul.js";
 import LSX_Youtube        from "./lib/lsx-youtube.js";
+
+// Must be started last
+import LSX_Modal          from "./lib/lsx-modal.js";
+import LSX_ModalImage     from "./lib/lsx-modal-image.js";
 
 import "./style.less";
 import "./icomoon/style.css";
@@ -61,12 +63,14 @@ export default class LS_Plugin_ExtraTags {
             LSX_GithubEdit,
             LSX_Grid,
             LSX_InfoBox,
-            LSX_Modal,
-            LSX_ModalImage,
             LSX_Quiz,
             LSX_TabPages,
             LSX_ul,
             LSX_Youtube,
+
+            // Must be last
+            LSX_Modal,
+            LSX_ModalImage,
         ].forEach(CustomTag => {
             let tag = new CustomTag();
             tag.preprocessHtml(html, this);
