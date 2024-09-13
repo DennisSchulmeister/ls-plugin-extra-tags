@@ -948,7 +948,7 @@ Will be rendered as:
 
 ```html
 <!-- Initially visible thumbnail -->
-<div class="lsx-modal-thumbnail">
+<div class="lsx-modal-thumbnail lsx-modal-image-thumbnail">
     <img src="image.png" class="img-thumbnail w-100" />
     Thumbnail Caption
 </div>
@@ -956,7 +956,7 @@ Will be rendered as:
 <!-- Added to the HTML body, when the thumbnail is clicked -->
 <!-- Will be closed by a mouse click -->
 <div class="lsx-modal">
-    <img src="image.png" class="img-thumbnail img-responsive" />
+    <img src="image.png" class="lsx-modal-image-image img-thumbnail" />
 </div>
 ```
 
