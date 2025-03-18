@@ -88,9 +88,3 @@ Carousels will be rendered to plain bootstrap carousels:
     </div>
 </div>
 ```
-
-
-JavaScript API
---------------
-
-TODO

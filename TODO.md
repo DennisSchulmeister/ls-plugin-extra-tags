@@ -7,7 +7,3 @@ Ideas for new tags
 
 
 * Tags / chips, e.g. to highlight keywords in learning targets
-
-* Lightweight image cards
-
-* Source code with border and highlighted lines

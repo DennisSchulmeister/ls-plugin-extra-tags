@@ -1,6 +1,6 @@
 {
   "name": "@dschulmeis/ls-plugin-extra-tags",
-  "version": "3.4.1",
+  "version": "3.5.0",
   "description": "lecture-slides.js plugin: Additional HTML tags",
   "main": "index.js",
   "repository": "git@github.com:DennisSchulmeister/ls-plugin-extra-tags.git",
