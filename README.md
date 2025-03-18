@@ -10,17 +10,7 @@ Description
 -----------
 
 This plugin simplifies content creation with `lecture-slides.js` and
-`mini-tutorial.js` by defining additional HTML tags for complex elements:
-
- * Bootstrap grids
- * Info boxes (information, warning, critical)
- * Tab pages to switch between multiple sub-pages
- * Accordion to switch between multiple sub-pages
- * Carousels to manually slide through a linear process
- * Embedded Youtube videos
- * Interactive quizzes
- * Lists with emoji symbols
- * Edit and Download GitHub Repositories online
+`mini-tutorial.js` by defining additional HTML tags for complex elements.
 
 Please note, that this requires the Bootstrap framework in your document.
 For `lecture-slides.js` this is no problem, as Bootstrap is already used
