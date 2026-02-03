@@ -18,7 +18,7 @@ be added via three additional buttons:
 
 ```html
 <lsx-github-edit
-    url          = "1%20HTML%20und%20CSS/Aufgaben/Einfaches%20Layout/Aufgabe"
+    url          = "https://codespaces.new/DennisSchulmeister/dhbwka-wwi-webprog-quellcodes/tree/1%20HTML%20und%20CSS/Aufgaben/Einfaches%20Layout/Aufgabe"
     download     = "1%20HTML%20und%20CSS/Aufgaben/Einfaches%20Layout"
     pages-url1   = "1%20HTML%20und%20CSS/Aufgaben/Einfaches%20Layout/Loesung/"
     pages-label1 = "Musterlösung ansehen"
@@ -30,4 +30,18 @@ be added via three additional buttons:
 ```
 
 Long prefixes, that will remain the same throughout a presentation, can be also be
-moved to the plugin configuration (see top of this page).
+moved to the plugin configuration:
+
+```js
+ExtraTags: new LsPluginExtraTags({
+    githubEditUrlPrefix: "https://codespaces.new/DennisSchulmeister/dhbwka-wwi-webprog-quellcodes/",
+    githubPagesUrlPrefix: "https://dennisschulmeister.github.io/dhbwka-wwi-webprog-quellcodes/",
+    githubEditOnOpen: url => {alert(`The code is in directory '${decodeURI(url)}'!`)},
+}),
+```
+
+Before 2026 this tag used to open the sourcecode with `gitpod.io`. Unfortunately they
+deprecarted their Online IDE in favor of yet anotehr AI coding agent. :-( Now we are
+using GitHub CodeSpaces, which does virtually the same. But it cannot deep-link into a
+directory inside the Git repository. The nasty workaround is the `githubEditOnOpen(url, fullUrl)`
+callback, used here to tell the user where to find the code.
