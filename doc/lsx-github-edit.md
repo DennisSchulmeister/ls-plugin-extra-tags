@@ -34,6 +34,7 @@ moved to the plugin configuration:
 
 ```js
 ExtraTags: new LsPluginExtraTags({
+    downloadUrlPrefix: "https://github.com/DennisSchulmeister/dhbwka-wwi-webprog-quellcodes/tree/main/",
     githubEditUrlPrefix: "https://codespaces.new/DennisSchulmeister/dhbwka-wwi-webprog-quellcodes/",
     githubPagesUrlPrefix: "https://dennisschulmeister.github.io/dhbwka-wwi-webprog-quellcodes/",
     githubEditOnOpen: url => {alert(`The code is in directory '${decodeURI(url)}'!`)},
